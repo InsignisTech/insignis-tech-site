@@ -1,13 +1,69 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>INSIGNIS TECH</title>
-<link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INSIGNIS TECH</title>
+
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-<h1>INSIGNIS TECH – Strona działa!</h1>
-<script src="script.js"></script>
+
+    <!-- HOLOGRAM LAYERS -->
+    <div class="holo-360"></div>
+    <div class="holo-fog-layer"></div>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="logo">INSIGNIS TECH</div>
+
+        <div class="menu desktop">
+            <a href="#solutions">Rozwiązania</a>
+            <a href="#ai">AI</a>
+            <a href="#iam">IAM</a>
+            <a href="#about">O nas</a>
+            <a href="#contact">Kontakt</a>
+        </div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#solutions">Rozwiązania</a>
+        <a href="#ai">AI</a>
+        <a href="#iam">IAM</a>
+        <a href="#about">O nas</a>
+        <a href="#contact">Kontakt</a>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>FUTURE‑READY. AI‑DRIVEN. HUMAN‑FOCUSED.</h1>
+            <a class="cta" href="#solutions">Poznaj nasze rozwiązania</a>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="glass">
+            <h2>Kim jesteśmy</h2>
+            <p>
+                INSIGNIS Tech tworzy inteligentne systemy przyszłości — AI, Zero Trust, 
+                integracje medyczne, platformy ubezpieczeniowe oraz nowoczesną architekturę danych.
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 INSIGNIS TECH
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
