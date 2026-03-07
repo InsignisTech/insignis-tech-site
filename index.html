@@ -1,242 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>INSIGNIS TECH — Futuristic AI Experience (SAFE)</title>
-  <meta name="description" content="INSIGNIS TECH — immersyjna strona AI 360°, hologramy, neon/glass UI, lekki frontend HTML/CSS/JS. Wersja SAFE z auto-throttle i optymalizacją." />
-  <meta name="theme-color" content="#0df" />
-  <style>
-    :root {
-      --bg:#03060a; --ink:#e6f7ff; --ink-dim:#b7e9ff;
-      --aqua:#65e6ff; --cyan:#0df; --violet:#9a7cff;
-      --glass:rgba(255,255,255,0.08);
-      --border:rgba(120,230,255,0.55);
-      --maxw:1200px; --pad:clamp(16px,2.2vw,28px);
-      --radius:16px; --blur:20px; /* mniejszy blur */
-      --z-particles:7; --z-fog:8; --z-holo:10; --z-ui:20;
-    }
-    *{box-sizing:border-box}
-    html,body{
-      margin:0; padding:0; overflow-x:hidden;
-      background:
-        radial-gradient(900px 540px at 70% -10%, rgba(100,200,255,0.08), transparent 60%),
-        radial-gradient(720px 450px at 20% 120%, rgba(160,140,255,0.06), transparent 65%),
-        var(--bg);
-      color:var(--ink);
-      font:500 16px/1.6 system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      letter-spacing:.2px;
-      scroll-behavior:smooth;
-    }
-    a{color:var(--aqua); text-decoration:none}
-    a:hover{text-decoration:underline}
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>INSIGNIS TECH — Futuristic AI • Zero Trust • Med/Insurance Integrations</title>
+  <meta name="description" content="INSIGNIS TECH — premium AI systems, agenci, Zero Trust, integracje Med/Insurance/Tech. Futurystyczne UX, bezpieczne i wydajne animacje (SAFE)." />
+  <meta name="theme-color" content="#00ddff" />
 
-    /* NAV */
-    .nav{position:fixed; inset:0 0 auto 0; height:64px; z-index:var(--z-ui);
-      backdrop-filter:blur(8px);
-      background:linear-gradient(to bottom, rgba(3,6,10,0.65), rgba(3,6,10,0.2) 70%, transparent);
-      border-bottom:1px solid rgba(120,230,255,0.12);
-    }
-    .nav-inner{max-width:var(--maxw); margin:0 auto; padding:0 var(--pad);
-      height:100%; display:flex; align-items:center; justify-content:space-between}
-    .brand{display:flex; gap:12px; align-items:center; text-transform:uppercase; letter-spacing:.5px; font-weight:700}
-    .brand-logo{width:26px; height:26px; border-radius:8px;
-      background:conic-gradient(from 210deg, var(--cyan), var(--violet), var(--cyan));
-      box-shadow:0 0 14px rgba(120,230,255,0.5)
-    }
-    .brand-name{font-size:14px}
-    .nav-links{display:flex; gap:16px}
-    .nav-links a{padding:8px 10px; border-radius:10px; transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
-    .nav-links a:hover{transform:translateY(-1px); box-shadow:0 0 28px rgba(120,230,255,0.2); background:rgba(255,255,255,0.03)}
-    .hamburger{display:none; width:32px; height:24px; position:relative; cursor:pointer; background:none; border:none}
-    .hamburger span, .hamburger::before, .hamburger::after{
-      content:""; display:block; height:2px; width:100%; background:var(--cyan); box-shadow:0 0 6px #0df;
-      position:absolute; left:0; transition:transform .3s ease, top .3s ease, opacity .3s ease
-    }
-    .hamburger span{top:11px}
-    .hamburger::before{top:4px}
-    .hamburger::after{top:18px}
-    .hamburger.active span{opacity:0}
-    .hamburger.active::before{top:11px; transform:rotate(45deg)}
-    .hamburger.active::after{top:11px; transform:rotate(-45deg)}
-    .drawer{
-      position:fixed; top:64px; right:0; bottom:0; width:min(82vw,340px);
-      backdrop-filter:blur(8px);
-      background:linear-gradient(180deg, rgba(8,14,20,0.85), rgba(6,10,16,0.75));
-      border-left:1px solid rgba(120,230,255,0.18);
-      transform:translateX(110%); transition:transform .3s ease; z-index:var(--z-ui);
-      padding:20px; display:flex
-    }
-    .drawer.open{transform:translateX(0)}
-    .drawer-nav{display:flex; flex-direction:column; gap:12px; width:100%}
-    .drawer-nav a{padding:10px 10px; border-radius:10px; background:rgba(255,255,255,0.03)}
+  <meta property="og:title" content="INSIGNIS TECH — Futuristic AI • Zero Trust" />
+  <meta property="og:description" content="AI Agents • Zero Trust • Med/Insurance Integrations • Premium UX" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pl_PL" />
 
-    /* HERO */
-    .hero{position:relative; min-height:90vh; padding-top:88px; overflow:hidden; display:flex; align-items:center; justify-content:center; perspective:1000px}
-    .fog{position:absolute; inset:-10%; pointer-events:none; z-index:var(--z-fog);
-      background:
-        radial-gradient(520px 400px at 20% 30%, rgba(0,221,255,0.07), transparent 70%),
-        radial-gradient(650px 480px at 80% 20%, rgba(154,124,255,0.07), transparent 70%),
-        radial-gradient(800px 620px at 50% 110%, rgba(0,221,255,0.06), transparent 75%);
-      filter: blur(32px); animation:fogdrift 22s ease-in-out infinite alternate
-    }
-    @keyframes fogdrift{
-      0%{transform:translate3d(-1.5%,-1.5%,0) scale(1); opacity:.85}
-      100%{transform:translate3d(1.5%,2%,0) scale(1.015); opacity:.95}
-    }
-    .holo-wrap{position:absolute; inset:0; display:grid; place-items:center; transform-style:preserve-3d; z-index:var(--z-holo); pointer-events:none}
-    .holo-dome{
-      width:min(1000px,90vw); aspect-ratio:1.9/1; border-radius:20px;
-      background:
-        radial-gradient(110% 140% at 50% 0%, rgba(13,255,255,0.09), transparent 65%),
-        radial-gradient(90% 100% at 50% 100%, rgba(154,124,255,0.09), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.005));
-      border:1px solid rgba(120,230,255,0.2);
-      box-shadow:inset 0 0 50px rgba(13,255,255,0.05), 0 8px 60px rgba(13,255,255,0.05);
-      filter: drop-shadow(0 0 14px rgba(13,255,255,0.16));
-      transform:translateZ(36px) rotateX(0) rotateY(0); transition:transform .12s linear;
-      overflow:hidden; position:relative;
-      mask-image: radial-gradient(120% 95% at 50% 0%, black 54%, transparent 100%);
-    }
-    .holo-scan{position:absolute; inset:0;
-      background:
-        repeating-linear-gradient(to bottom, rgba(13,255,255,0.05) 0 2px, transparent 2px 5px),
-        radial-gradient(60% 80% at 50% 0%, rgba(255,255,255,0.05), transparent 70%);
-      mix-blend-mode:screen; animation:scan 4.2s linear infinite
-    }
-    @keyframes scan{from{transform:translateY(-100%)} to{transform:translateY(100%)}}
-    .hero-inner{max-width:var(--maxw); position:relative; z-index:var(--z-ui); display:grid; gap:18px; padding:0 var(--pad); transform:translateZ(52px)}
-    .eyebrow{display:inline-flex; gap:8px; align-items:center; font-size:13px; color:var(--ink-dim);
-      background:rgba(255,255,255,0.03); padding:7px 10px; border-radius:999px; border:1px solid rgba(120,230,255,0.16)}
-    .eyebrow .dot{width:6px; height:6px; border-radius:999px; background:var(--cyan); box-shadow:0 0 16px rgba(120,230,255,0.55)}
-    .title{margin:0; font-size:clamp(26px,5.2vw,56px); line-height:1.08; letter-spacing:.4px; text-shadow:0 0 18px rgba(120,230,255,0.28)}
-    .title .accent{color:var(--cyan)}
-    .subtitle{color:var(--ink-dim); max-width:740px}
-    .cta-row{display:flex; gap:10px; flex-wrap:wrap}
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; font-weight:600;
-      border:1px solid var(--border); background:linear-gradient(165deg, rgba(13,255,255,0.07), rgba(255,255,255,0.03));
-      box-shadow:0 0 16px rgba(120,230,255,0.3); transition:transform .15s ease, box-shadow .15s ease}
-    .btn:hover{transform:translateY(-2px); box-shadow:0 0 22px rgba(120,230,255,0.38)}
-    .btn.secondary{background:rgba(255,255,255,0.03); box-shadow:0 0 26px rgba(120,230,255,0.22)}
-
-    /* SEKCJE */
-    .section{position:relative; padding:68px var(--pad)}
-    .container{max-width:var(--maxw); margin:0 auto}
-    .section-title{font-size:clamp(20px,3vw,30px); margin:0 0 14px; text-shadow:0 0 14px rgba(120,230,255,0.22)}
-    .section-lead{color:var(--ink-dim); margin:0 0 22px}
-
-    /* siatki */
-    .grid{display:grid; gap:16px; grid-template-columns:repeat(12,1fr)}
-    .card{
-      grid-column: span 12;
-      background:var(--glass); backdrop-filter:blur(var(--blur));
-      border:1px solid rgba(120,230,255,0.16); border-radius:var(--radius); padding:16px;
-      box-shadow: inset 0 0 28px rgba(255,255,255,0.03), 0 14px 54px rgba(13,255,255,0.05);
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-    }
-    .card:hover{transform:translateY(-2px); border-color:rgba(120,230,255,0.32); box-shadow:0 8px 44px rgba(13,255,255,0.14)}
-    .icons-grid{display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr))}
-    .icon-card{
-      background:var(--glass); backdrop-filter: blur(18px); border:1px solid rgba(120,230,255,0.16);
-      border-radius:14px; padding:14px; display:grid; gap:8px; place-items:center; text-align:center;
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .icon-card:hover{transform:translateY(-2px); box-shadow:0 0 28px rgba(120,230,255,0.22)}
-    .neon-icon{width:48px; height:48px; border-radius:14px; background:conic-gradient(from 210deg, var(--cyan), var(--violet), var(--cyan)); box-shadow:0 0 16px rgba(120,230,255,0.52)}
-    .solutions{display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr))}
-    /* formularz */
-    .contact-form{display:grid; gap:12px}
-    .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    .field{display:grid; gap:6px}
-    .field span{font-size:13px; color:var(--ink-dim)}
-    .input, textarea{
-      width:100%; padding:11px 13px; border-radius:12px; color:var(--ink);
-      background:rgba(255,255,255,0.04); border:1px solid rgba(120,230,255,0.2);
-      outline:none; box-shadow: inset 0 0 10px rgba(13,255,255,0.05);
-      transition: border-color .15s ease, box-shadow .15s ease;
-    }
-    .input:focus, textarea:focus{border-color:var(--border); box-shadow:0 0 14px rgba(120,230,255,0.22)}
-    textarea{min-height:110px; resize:vertical}
-    .field.full{grid-column:1 / -1}
-    .hidden{position:absolute; left:-9999px}
-
-    /* FOOTER */
-    .footer{padding:40px var(--pad); border-top:1px solid rgba(120,230,255,0.14); color:var(--ink-dim); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))}
-    .foot-inner{max-width:var(--maxw); margin:0 auto; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
-
-    /* RESPONSYWNOŚĆ */
-    @media (max-width: 980px){
-      .nav-links{display:none}
-      .hamburger{display:block}
-      .row{grid-template-columns:1fr}
-    }
-    @media (min-width: 720px){
-      .card.x4{grid-column: span 4}
-      .card.x3{grid-column: span 3}
-    }
-
-    /* REDUCED MOTION = twarde wyciszenie animacji */
-    @media (prefers-reduced-motion: reduce){
-      *, *::before, *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-    /* ULTRA particles canvas */
-    .particles{position:fixed; inset:0; z-index:var(--z-particles); pointer-events:none; display:block;}
-  </style>
+  <link rel="preload" href="./style.css" as="style" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
-<body data-particles="auto" data-safe="on">
-  <!-- CANVAS cząsteczek (global) -->
+
+<body data-safe="on" data-particles="auto">
+  <a class="skip" href="#main">Przejdź do treści</a>
+
+  <!-- global canvas (particles) -->
   <canvas id="particles" class="particles" aria-hidden="true"></canvas>
 
   <!-- NAV -->
   <header class="nav" role="banner">
     <div class="nav-inner">
-      <a href="#hero" aria-label="INSIGNIS TECH — strona główna" class="brand">
+      <a class="brand" href="#hero" aria-label="INSIGNIS TECH — Start">
         <span class="brand-logo" aria-hidden="true"></span>
         <span class="brand-name">INSIGNIS TECH</span>
       </a>
+
       <nav class="nav-links" aria-label="Główna nawigacja">
-        <a href="#hero">Start</a>
         <a href="#about">O nas</a>
-        <a href="#departments">Działy</a>
-        <a href="#tech">Technologie</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#labs">Labs</a>
+        <a href="#trust">Trust</a>
         <a href="#solutions">Rozwiązania</a>
         <a href="#contact">Kontakt</a>
       </nav>
+
       <button class="hamburger" id="hamburger" aria-label="Otwórz menu" aria-controls="drawer" aria-expanded="false">
         <span></span>
       </button>
     </div>
+
     <aside class="drawer" id="drawer" aria-hidden="true">
       <nav class="drawer-nav" aria-label="Menu mobilne">
-        <a href="#hero">Start</a>
         <a href="#about">O nas</a>
-        <a href="#departments">Działy</a>
-        <a href="#tech">Technologie</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#labs">Labs</a>
+        <a href="#trust">Trust</a>
         <a href="#solutions">Rozwiązania</a>
         <a href="#contact">Kontakt</a>
       </nav>
+      <div class="drawer-foot">
+        <button class="btn ghost" id="toggleSafeM" type="button" aria-pressed="true">🛡️ SAFE: ON</button>
+        <button class="btn ghost" id="toggleFxM" type="button" aria-pressed="true">✨ FX: ON</button>
+      </div>
     </aside>
   </header>
 
   <!-- HERO -->
   <section id="hero" class="hero" aria-labelledby="hero-title">
     <div class="fog" aria-hidden="true"></div>
+
     <div class="holo-wrap" aria-hidden="true">
-      <div class="holo-dome" id="holoDome"><div class="holo-scan"></div></div>
+      <div class="holo-dome" id="holoDome">
+        <div class="holo-scan"></div>
+        <div class="holo-grain"></div>
+        <div class="holo-ring"></div>
+      </div>
     </div>
+
     <div class="hero-inner">
-      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Immersive AI Environment</p>
-      <h1 id="hero-title" class="title">Super‑futurystyczny interfejs <span class="accent">AI 360°</span> dla INSIGNIS TECH</h1>
-      <p class="subtitle">Hologram, mgła neuronowa i parallax 3D. Statyczny, lekki frontend (HTML/CSS/JS) + CI/CD na Netlify.</p>
+      <p class="eyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        Futuristic AI • Zero Trust • Med/Insurance Integrations
+      </p>
+
+      <h1 id="hero-title" class="title">
+        Premium platformy <span class="accent">AI Systems</span><br/>
+        dla INSIGNIS TECH
+      </h1>
+
+      <p class="subtitle">
+        Hologram, mgła neuronowa, cząsteczki, reveal na viewport — ale zawsze SAFE i wydajnie.
+        Czysty HTML/CSS/JS bez frameworków. Gotowe pod GitHub + Azure Static Web Apps / Netlify.
+      </p>
+
       <div class="cta-row">
-        <a class="btn" href="#solutions">⚡ Zobacz rozwiązania AI</a>
-        <a class="btn secondary" href="#about">ℹ️ O firmie</a>
+        <a class="btn" href="#solutions">⚡ Zobacz rozwiązania</a>
+        <a class="btn secondary" href="#labs">🧪 Wejdź do Labs</a>
+        <button class="btn ghost" id="toggleSafe" type="button" aria-pressed="true" title="SAFE ogranicza ruch i obciążenie">
+          🛡️ SAFE: ON
+        </button>
+        <button class="btn ghost" id="toggleFx" type="button" aria-pressed="true" title="Wyłącza efekty (particles/fog/tilt)">
+          ✨ FX: ON
+        </button>
+      </div>
+
+      <!-- AI console -->
+      <div class="terminal reveal" data-reveal>
+        <div class="terminal-top">
+          <span class="pill"></span><span class="pill"></span><span class="pill"></span>
+          <span class="terminal-title">INSIGNIS • AI Console</span>
+          <button class="terminal-copy" id="copyCmd" type="button">Kopiuj</button>
+        </div>
+        <pre class="terminal-body" id="term">
+<span class="t-dim">$</span> <span class="t-cyan">insignis</span> <span class="t-violet">status</span>
+<span class="t-ok">✔</span> Identity: <span class="t-cyan">Entra • MFA • PIM • Conditional Access</span>
+<span class="t-ok">✔</span> Data Controls: <span class="t-cyan">DLP • Audit • Governance</span>
+<span class="t-ok">✔</span> Integrations: <span class="t-cyan">MedLink • e‑Vestra • LisCO</span>
+<span class="t-dim">→</span> Next: <span class="t-violet">agentic workflows + secure delivery</span>
+        </pre>
+      </div>
+
+      <div class="hero-stats reveal" data-reveal>
+        <div class="stat"><strong>AI Agents</strong><span>operacje / analityka / automatyzacja</span></div>
+        <div class="stat"><strong>Zero Trust</strong><span>identity • devices • data • apps</span></div>
+        <div class="stat"><strong>Med + Insurance</strong><span>interop • governance • B2B</span></div>
       </div>
     </div>
   </section>
@@ -246,41 +128,122 @@
     <section id="about" class="section">
       <div class="container">
         <h2 class="section-title">O INSIGNIS TECH</h2>
-        <p class="section-lead">Zero Trust, Agenci AI, integracje Med/Insurance/Tech. Architektury lekkie, audytowalne i gotowe na CI/CD.</p>
+        <p class="section-lead">
+          Budujemy bezpieczne, audytowalne i skalowalne systemy: AI Agents, integracje kliniczne i architektury Zero Trust.
+        </p>
+
         <div class="grid">
-          <article class="card x3"><h3>AI & Agents</h3><p>Agentowe systemy AI — operacje, analityka, kreatywność. RODO/NEN7510.</p></article>
-          <article class="card x3"><h3>Zero Trust</h3><p>Entra (MFA, PIM, CA), Intune, SSO Google (SAML/OIDC), DLP.</p></article>
-          <article class="card x3"><h3>Med Integrations</h3><p>MedLink, e‑Vestra, interoperacyjność kliniczna.</p></article>
-          <article class="card x3"><h3>Premium UX</h3><p>Glassmorphism + Neon + Hologram 360°. Zero frameworków.</p></article>
+          <article class="card x3 reveal" data-reveal>
+            <h3>AI & Agents</h3>
+            <p>Agentowe systemy AI: routing, pamięć operacyjna, narzędzia, guardrails.</p>
+          </article>
+          <article class="card x3 reveal" data-reveal>
+            <h3>Security by Design</h3>
+            <p>Entra (MFA/PIM/CA), Intune, SSO, governance, DLP, audyt.</p>
+          </article>
+          <article class="card x3 reveal" data-reveal>
+            <h3>Med Integrations</h3>
+            <p>MedLink, e‑Vestra, interoperacyjność, B2B, bezpieczeństwo danych.</p>
+          </article>
+          <article class="card x3 reveal" data-reveal>
+            <h3>Premium UX</h3>
+            <p>Glass + neon + hologram. Efekty tylko tam gdzie trzeba — bez zajeżdżania CPU.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- DEPARTMENTS -->
-    <section id="departments" class="section">
+    <!-- CAPABILITIES -->
+    <section id="capabilities" class="section">
       <div class="container">
-        <h2 class="section-title">Działy</h2>
-        <p class="section-lead">Ikony neonowe z efektem glow — responsywny grid.</p>
-        <div class="icons-grid">
-          <article class="icon-card"><div class="neon-icon" role="img" aria-label="AI / R&D"></div><strong>AI / R&D</strong><small>Agenci AI, modele</small></article>
-          <article class="icon-card"><div class="neon-icon" role="img" aria-label="Medical"></div><strong>Medical</strong><small>MedLink, EMR/HIS</small></article>
-          <article class="icon-card"><div class="neon-icon" role="img" aria-label="Insurance"></div><strong>Insurance</strong><small>LisCO, SSO</small></article>
-          <article class="icon-card"><div class="neon-icon" role="img" aria-label="Security"></div><strong>Security</strong><small>Zero Trust, DLP</small></article>
-          <article class="icon-card"><div class="neon-icon" role="img" aria-label="Data"></div><strong>Data</strong><small>Lakehouse, ETL</small></article>
-          <article class="icon-card"><div class="neon-icon" role="img" aria-label="Ops"></div><strong>Ops</strong><small>CI/CD, Observability</small></article>
+        <h2 class="section-title">Capabilities</h2>
+        <p class="section-lead">Klocki, z których składamy nowoczesne platformy (AI + bezpieczeństwo + dane).</p>
+
+        <div class="cap-grid">
+          <article class="cap reveal" data-reveal>
+            <div class="cap-ico" aria-hidden="true"></div>
+            <h3>Agent Fabric</h3>
+            <p>Orkiestracja agentów, narzędzia, obserwowalność, polityki.</p>
+          </article>
+          <article class="cap reveal" data-reveal>
+            <div class="cap-ico" aria-hidden="true"></div>
+            <h3>Identity & Access</h3>
+            <p>SSO, Conditional Access, phishing‑resistant MFA, PIM/JIT.</p>
+          </article>
+          <article class="cap reveal" data-reveal>
+            <div class="cap-ico" aria-hidden="true"></div>
+            <h3>Data Controls</h3>
+            <p>DLP, audyt, etykiety, retencja, kontrola udostępnień.</p>
+          </article>
+          <article class="cap reveal" data-reveal>
+            <div class="cap-ico" aria-hidden="true"></div>
+            <h3>Integrations</h3>
+            <p>Med/Insurance/Tech: API, eventing, ETL, federacje B2B.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- TECHNOLOGIE -->
-    <section id="tech" class="section">
+    <!-- LABS -->
+    <section id="labs" class="section">
       <div class="container">
-        <h2 class="section-title">Technologie</h2>
-        <p class="section-lead">Tkanina neuronowa, highlighty i animowane akcenty.</p>
-        <div class="grid">
-          <article class="card x4"><h3>Agent Fabric</h3><p>Routing, pamięć operacyjna, guardrails.</p></article>
-          <article class="card x4"><h3>Trust & Identity</h3><p>Entra (MFA, PIM, CA), Intune, SSO Google, DLP.</p></article>
-          <article class="card x4"><h3>Frontend Futuristic</h3><p>Neon + Glass + Hologram 360° + AI Fog. Maksymalna kontrola.</p></article>
+        <h2 class="section-title">INSIGNIS Labs</h2>
+        <p class="section-lead">
+          Strefa “wow”: interakcje, prototypy, koncepty. Wszystko z auto‑throttle i SAFE.
+        </p>
+
+        <div class="labs-grid">
+          <article class="card reveal" data-reveal>
+            <h3>Immersive Holo UI</h3>
+            <p>3D tilt + scanlines + micro‑grain. SAFE ogranicza zakresy, wyłącza cięższe ścieżki.</p>
+          </article>
+          <article class="card reveal" data-reveal>
+            <h3>Viewport Animations</h3>
+            <p>Reveal i efekty uruchamiane tylko w polu widzenia — zero „scroll‑lag”.</p>
+          </article>
+          <article class="card reveal" data-reveal>
+            <h3>AI Console Storytelling</h3>
+            <p>Terminal jako prezentacja “co robimy” + szybkie kopiowanie komend.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section id="trust" class="section">
+      <div class="container">
+        <h2 class="section-title">Trust & Compliance</h2>
+        <p class="section-lead">
+          Transparentność i kontrola: zasady, audyt, minimalizacja ryzyka. Sekcja gotowa pod linki do polityk i certyfikacji.
+        </p>
+
+        <div class="trust-grid">
+          <article class="trust-card reveal" data-reveal>
+            <h3>Zero Trust</h3>
+            <ul>
+              <li>Identity‑first: MFA / CA / PIM</li>
+              <li>Device compliance & conditional access</li>
+              <li>Least privilege + approval flows</li>
+            </ul>
+          </article>
+
+          <article class="trust-card reveal" data-reveal>
+            <h3>Data Governance</h3>
+            <ul>
+              <li>DLP & etykiety danych</li>
+              <li>Audit trails & monitoring</li>
+              <li>Kontrola udostępnień i retencji</li>
+            </ul>
+          </article>
+
+          <article class="trust-card reveal" data-reveal>
+            <h3>Secure Delivery</h3>
+            <ul>
+              <li>CI/CD z kontrolą zmian</li>
+              <li>Hardening (headers, polityki)</li>
+              <li>Performance budgets i testy</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -289,12 +252,13 @@
     <section id="solutions" class="section">
       <div class="container">
         <h2 class="section-title">Rozwiązania</h2>
-        <p class="section-lead">Karty glass z efektem lift‑on‑hover.</p>
+        <p class="section-lead">Wybierz tor: AI, med, insurance, security. Te karty możesz łatwo rozszerzać.</p>
+
         <div class="solutions">
-          <article class="card"><h3>AI Agents</h3><p>Automatyzacja procesów i analityka.</p></article>
-          <article class="card"><h3>MedLink</h3><p>Integracje kliniczne B2B.</p></article>
-          <article class="card"><h3>LisCO</h3><p>CRM Insurance — SSO, DLP, RODO.</p></article>
-          <article class="card"><h3>Clinical Systems</h3><p>e‑Vestra, interoperacyjność, bezpieczeństwo.</p></article>
+          <article class="card reveal" data-reveal><h3>AI Agents</h3><p>Automatyzacja procesów i analityka operacyjna.</p></article>
+          <article class="card reveal" data-reveal><h3>MedLink</h3><p>Integracje kliniczne B2B i interoperacyjność.</p></article>
+          <article class="card reveal" data-reveal><h3>LisCO</h3><p>CRM Insurance — SSO, governance, kontrola danych.</p></article>
+          <article class="card reveal" data-reveal><h3>Clinical Systems</h3><p>e‑Vestra, bezpieczeństwo, integracje, dostęp.</p></article>
         </div>
       </div>
     </section>
@@ -303,16 +267,29 @@
     <section id="contact" class="section">
       <div class="container">
         <h2 class="section-title">Kontakt</h2>
-        <p class="section-lead">Formularz (działa też w Netlify Forms).</p>
-        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact" />
-          <p class="hidden"><label>Nie wypełniaj: <input name="bot-field" /></label></p>
+        <p class="section-lead">
+          Napisz do nas. Ten formularz jest statyczny — możesz go łatwo podpiąć pod Azure Functions / Logic Apps / Netlify Forms.
+        </p>
+
+        <form class="contact-form reveal" data-reveal onsubmit="return window.InsignisContact.submit(event)">
           <div class="row">
-            <label class="field"><span>Imię i nazwisko</span><input class="input" type="text" name="name" required autocomplete="name" /></label>
-            <label class="field"><span>E‑mail</span><input class="input" type="email" name="email" required autocomplete="email" /></label>
+            <label class="field">
+              <span>Imię i nazwisko</span>
+              <input class="input" type="text" name="name" required autocomplete="name" />
+            </label>
+            <label class="field">
+              <span>E‑mail</span>
+              <input class="input" type="email" name="email" required autocomplete="email" />
+            </label>
           </div>
-          <label class="field full"><span>Wiadomość</span><textarea name="message" class="input" required rows="5"></textarea></label>
+
+          <label class="field full">
+            <span>Wiadomość</span>
+            <textarea name="message" class="input" required rows="5"></textarea>
+          </label>
+
           <button class="btn full" type="submit">Wyślij</button>
+          <p class="tiny">Tip: Podłączymy docelowo pod Microsoft (Logic Apps / Functions) – powiedz, co wybierasz.</p>
         </form>
       </div>
     </section>
@@ -326,151 +303,6 @@
     </div>
   </footer>
 
-  <script>
-    // ===== helpers =====
-    const $ = (s, c=document)=>c.querySelector(s); const $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
-    const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
-
-    // year
-    document.addEventListener('DOMContentLoaded',()=>{ const y=$('#year'); if(y) y.textContent=new Date().getFullYear(); });
-
-    // mobile drawer
-    const hamburger=$('#hamburger'), drawer=$('#drawer');
-    function toggleDrawer(){ const open=drawer.classList.toggle('open'); hamburger.classList.toggle('active',open);
-      hamburger.setAttribute('aria-expanded',open?'true':'false'); drawer.setAttribute('aria-hidden',open?'false':'true'); }
-    if(hamburger&&drawer){ hamburger.addEventListener('click',toggleDrawer);
-      document.addEventListener('click',e=>{ if(openAndClickOutside(e)) toggleDrawer(); });
-      function openAndClickOutside(e){ return drawer.classList.contains('open') && !drawer.contains(e.target) && !hamburger.contains(e.target); }
-      $$('.drawer-nav a').forEach(a=>a.addEventListener('click',()=>{ if(drawer.classList.contains('open')) toggleDrawer(); }));
-    }
-
-    // smooth anchors with offset
-    $$('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{
-        const id=a.getAttribute('href').slice(1), el=document.getElementById(id); if(!el) return;
-        e.preventDefault(); const off=60; const y=el.getBoundingClientRect().top+window.scrollY-off;
-        window.scrollTo({top:y,behavior:'smooth'});
-      });
-    });
-
-    // hologram 360° (SAFE: mniejsze zakresy)
-    const dome=$('#holoDome'); let rx=0,ry=0,targetRx=0,targetRy=0;
-    const safeMode = (document.body.getAttribute('data-safe')||'on').toLowerCase()==='on';
-    if(dome){
-      window.addEventListener('mousemove',e=>{
-        const cx=innerWidth/2, cy=innerHeight/2;
-        const dx=(e.clientX-cx)/cx, dy=(e.clientY-cy)/cy;
-        const maxY = safeMode ? 7 : 12;
-        const maxX = safeMode ? 6 : 10;
-        targetRy=clamp(dx*maxY, -maxY, maxY);
-        targetRx=clamp(-dy*maxX, -maxX, maxX);
-      },{passive:true});
-      window.addEventListener('deviceorientation',e=>{
-        if(safeMode) return; // w SAFE wyłączamy gyro (często laguje)
-        const {beta,gamma}=e; if(beta==null||gamma==null) return;
-        targetRx=clamp((beta-45)/4,-10,10); targetRy=clamp(gamma/5,-12,12);
-      });
-      const loop=()=>{ rx+=(targetRx-rx)*0.08; ry+=(targetRy-ry)*0.08;
-        dome.style.transform=`translateZ(36px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`; requestAnimationFrame(loop); };
-      loop();
-    }
-
-    // fog parallax (lekki)
-    const fog=$('.fog'); if(fog){ window.addEventListener('scroll',()=>{ const m=(scrollY/innerHeight)*2.2;
-      fog.style.transform=`translate3d(${m}%, ${m*0.7}%, 0)`; fog.style.opacity=String(0.85+Math.min(0.12,scrollY/(innerHeight*2))); },{passive:true}); }
-
-    // ===== ULTRA: Particles Engine (SAFE) =====
-    (()=> {
-      const mediaReduce = matchMedia('(prefers-reduced-motion: reduce)');
-      const mode = (document.body.getAttribute('data-particles')||'auto').toLowerCase();
-      const safe = safeMode; // z góry
-      const canvas = $('#particles'); if(!canvas) return;
-      if(mediaReduce.matches || mode==='off'){ canvas.remove(); return; }
-
-      const DPR = Math.min(devicePixelRatio||1, 1.25); // limit DPI
-      const mem = navigator.deviceMemory || 4;
-      const ctx = canvas.getContext('2d',{alpha:true}); if(!ctx) return;
-
-      // gęstość (większa liczba = mniej cząsteczek)
-      const pickDensity = m => {
-        if(m==='low') return 30000;
-        if(m==='high') return 15000;
-        if(m==='medium') return 22000;
-        // auto
-        if(DPR>1.1 && mem>=6 && !safe) return 18000;
-        if(mem<=4) return 26000;
-        return 22000;
-      };
-      let density = pickDensity(mode);
-
-      let W=0,H=0,count=0,particles=[], running=true, last=0;
-      const targetFPS = 24; const frameMS = 1000/targetFPS;
-      const maxShadow = safe ? 5 : 7;
-      const maxRadius = safe ? 1.3 : 1.8;
-
-      function resize(){
-        W = Math.max(1, innerWidth); H = Math.max(1, innerHeight);
-        canvas.width = Math.floor(W*DPR); canvas.height = Math.floor(H*DPR);
-        canvas.style.width=W+'px'; canvas.style.height=H+'px';
-        ctx.setTransform(DPR,0,0,DPR,0,0);
-        count = Math.max(10, Math.floor((W*H)/density));
-        init();
-      }
-      function rnd(a,b){ return Math.random()*(b-a)+a; }
-      function init(){
-        particles.length=0;
-        for(let i=0;i<count;i++){
-          const speed = rnd(0.015, 0.07); // SAFE: wolniejsze
-          particles.push({
-            x:rnd(0,W), y:rnd(0,H),
-            r:rnd(0.5, maxRadius),
-            vx:rnd(-1,1)*speed,
-            vy:rnd(-1,1)*speed,
-            a:rnd(0.28, 0.7)
-          });
-        }
-      }
-      function step(dt){
-        ctx.clearRect(0,0,W,H);
-        ctx.globalCompositeOperation='lighter';
-        ctx.shadowColor='rgba(120,230,255,0.45)'; // mniejsza poświata
-        ctx.shadowBlur=maxShadow;
-
-        const mul = dt/(1000/60);
-        for(let i=0;i<particles.length;i++){
-          const p=particles[i]; p.x+=p.vx*mul; p.y+=p.vy*mul;
-          if(p.x<-2) p.x=W+2; if(p.x>W+2) p.x=-2; if(p.y<-2) p.y=H+2; if(p.y>H+2) p.y=-2;
-          ctx.beginPath(); ctx.fillStyle=`rgba(120,230,255,${p.a})`; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-        }
-        ctx.globalCompositeOperation='source-over';
-      }
-
-      // Auto-throttle: jeśli klatki są zbyt ciężkie → zmniejsz liczbę cząsteczek
-      let slowCounter=0;
-      function loop(ts){
-        if(!running) return;
-        if(!last) last=ts;
-        const dt = ts-last;
-        if(dt>=frameMS){
-          step(dt);
-          // ocena wydajności
-          if(dt>frameMS*1.8){ slowCounter++; if(slowCounter>20){ // ~0.8s zwolnień
-              density = Math.min(density*1.25, 50000); // mniej cząsteczek
-              count = Math.max(8, Math.floor((W*H)/density));
-              particles.length = Math.min(particles.length, count);
-              slowCounter=0;
-            }
-          } else if (slowCounter>0) slowCounter--; // wygaszanie licznika
-          last=ts;
-        }
-        requestAnimationFrame(loop);
-      }
-
-      document.addEventListener('visibilitychange',()=>{ running = (document.visibilityState==='visible'); if(running) requestAnimationFrame(loop); });
-      addEventListener('resize', resize, {passive:true});
-
-      resize(); requestAnimationFrame(loop);
-    })();
-  </script>
+  <script src="./script.js" defer></script>
 </body>
 </html>
