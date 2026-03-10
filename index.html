@@ -6,8 +6,216 @@
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-<h1>Nowa futurystyczna strona INSIGNIS TECH</h1>
-<p>Strona została wygenerowana poprawnie. Teraz możesz ją rozwijać.</p>
-<script src="assets/js/app.js"></script>
+	<!-- LED-owy loading screen & animacje tła -->
+	<div id="loading-screen" class="loading-screen">
+		<div class="loading-content">
+			<div class="loading-logo">
+				<span class="loading-text">INSIGNIS</span>
+				<div class="loading-pulse"></div>
+			</div>
+			<div class="loading-bar">
+				<div class="loading-progress"></div>
+			</div>
+			<p class="loading-subtitle">Initializing AI Systems...</p>
+		</div>
+	</div>
+	<div class="fog-container">
+		<div class="fog fog-1"></div>
+		<div class="fog fog-2"></div>
+		<div class="fog fog-3"></div>
+	</div>
+	<div class="particle-system">
+		<div class="floating-particle particle-1"></div>
+		<div class="floating-particle particle-2"></div>
+		<div class="floating-particle particle-3"></div>
+		<div class="floating-particle particle-4"></div>
+		<div class="floating-particle particle-5"></div>
+		<div class="floating-particle particle-6"></div>
+		<div class="floating-particle particle-7"></div>
+		<div class="floating-particle particle-8"></div>
+	</div>
+	<nav class="navbar" role="navigation" aria-label="Główna nawigacja">
+		<div class="nav-container">
+			<div class="logo">
+				<span class="logo-text">INSIGNIS</span>
+				<div class="logo-glow"></div>
+			</div>
+			<ul class="nav-menu" role="menubar">
+				<li role="none"><a href="#hero" role="menuitem">HOME</a></li>
+				<li role="none"><a href="#about" role="menuitem">O NAS</a></li>
+				<li role="none"><a href="#technologies" role="menuitem">TECHNOLOGIE</a></li>
+				<li role="none"><a href="#solutions" role="menuitem">ROZWIĄZANIA</a></li>
+				<li role="none"><a href="#trusted" role="menuitem">FIRMY</a></li>
+				<li role="none"><a href="#brands" role="menuitem">NASZE MARKI</a></li>
+				<li role="none"><a href="#contact" role="menuitem">KONTAKT</a></li>
+			</ul>
+			<div class="burger" id="burger" aria-label="Otwórz menu" aria-expanded="false">
+				<div></div><div></div><div></div>
+			</div>
+		</div>
+	</nav>
+	<header class="hero" id="hero">
+		<div class="hero-fog">
+			<div class="hero-fog-layer fog-layer-1"></div>
+			<div class="hero-fog-layer fog-layer-2"></div>
+		</div>
+		<div class="hero-content">
+			<h1 class="hero-title neon-glow"><span class="neon-text large">INSIGNIS</span><br><span class="neon-text large cyan">TECH</span></h1>
+			<p class="hero-subtitle">Transformujemy przyszłość biznesu poprzez zaawansowane rozwiązania AI. Dołącz do liderów technologicznych, którzy już zaufali INSIGNIS TECH.</p>
+			<div class="trust-signals">
+				<div class="trust-item"><span class="trust-number">25+</span><span class="trust-label">Firm zaufało</span></div>
+				<div class="trust-item"><span class="trust-number">99.9%</span><span class="trust-label">Zadowolenie klientów</span></div>
+				<div class="trust-item"><span class="trust-number">24/7</span><span class="trust-label">Wsparcie</span></div>
+			</div>
+			<div class="hero-buttons">
+				<button class="btn btn-primary" id="exploreBtn" aria-label="Przejdź do sekcji O nas">EKSPLODUJ</button>
+				<button class="btn btn-secondary" aria-label="Dowiedz się więcej o INSIGNIS TECH">DOWIEDZ SIĘ WIĘCEJ</button>
+			</div>
+		</div>
+		<div class="hologram-container">
+			<div class="hologram" id="hologram" role="img" aria-label="Interaktywny hologram AI">
+				<div class="hologram-base"></div>
+				<div class="hologram-scanlines"></div>
+				<div class="hologram-glow-effect"></div>
+				<div class="hologram-particles">
+					<div class="particle particle-1"></div>
+					<div class="particle particle-2"></div>
+					<div class="particle particle-3"></div>
+					<div class="particle particle-4"></div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main role="main">
+		<section id="about" class="section about" aria-labelledby="about-title">
+			<div class="container">
+				<h2 id="about-title" class="section-title">O NAS</h2>
+				<div class="about-grid">
+					<div class="about-text">
+						<p>INSIGNIS TECH to awangarda innowacji w dziedzinie sztucznej inteligencji. Łączymy najnowsze osiągnięcia w machine learning, deep learning i quantum computing, aby tworzyć rozwiązania, które przekraczają granice możliwości.</p>
+						<p>Nasza misja to przyspieszenie transformacji cyfrowej przedsiębiorstw poprzez dostarczanie narzędzi AI, które są nie tylko potężne, ale także etyczne i zrównoważone.</p>
+					</div>
+					<div class="about-stats">
+						<div class="stat-card"><div class="stat-number">25+</div><div class="stat-label">Zrealizowanych projektów</div></div>
+						<div class="stat-card"><div class="stat-number">99.9%</div><div class="stat-label">Dokładność AI</div></div>
+						<div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">Wsparcie techniczne</div></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="technologies" class="section technologies" aria-labelledby="tech-title">
+			<div class="container">
+				<h2 id="tech-title" class="section-title">TECHNOLOGIE</h2>
+				<div class="tech-grid">
+					<div class="tech-card"><div class="tech-icon">⚡</div><h3>Neural Networks</h3><p>Głębokie sieci neuronowe dla zaawansowanej analizy danych</p></div>
+					<div class="tech-card"><div class="tech-icon">✧</div><h3>Quantum Computing</h3><p>Obliczenia kwantowe dla rozwiązywania złożonych problemów</p></div>
+					<div class="tech-card"><div class="tech-icon">🔐</div><h3>Blockchain AI</h3><p>Bezpieczne transakcje oparte na sztucznej inteligencji</p></div>
+					<div class="tech-card"><div class="tech-icon">◉</div><h3>IoT Integration</h3><p>Inteligentne połączenie urządzeń w ekosystemie IoT</p></div>
+					<div class="tech-card"><div class="tech-icon">◇</div><h3>Big Data Analytics</h3><p>Przetwarzanie masowych danych w czasie rzeczywistym</p></div>
+					<div class="tech-card"><div class="tech-icon">⚙</div><h3>Autonomous Systems</h3><p>Samouczące się systemy autonomiczne</p></div>
+				</div>
+			</div>
+		</section>
+		<section id="solutions" class="section solutions" aria-labelledby="solutions-title">
+			<div class="container">
+				<h2 id="solutions-title" class="section-title">ROZWIĄZANIA</h2>
+				<div class="solutions-grid">
+					<div class="solution-card"><div class="solution-header"><div class="solution-icon">🏭</div><h3>Przemysł 4.0</h3></div><p>Optymalizacja procesów produkcyjnych z wykorzystaniem AI</p><ul><li>Predictive maintenance</li><li>Quality control automation</li><li>Supply chain optimization</li></ul></div>
+					<div class="solution-card"><div class="solution-header"><div class="solution-icon">🏥</div><h3>Healthcare AI</h3></div><p>Rewolucyjne podejście do diagnostyki i leczenia</p><ul><li>Medical image analysis</li><li>Drug discovery acceleration</li><li>Personalized treatment plans</li></ul></div>
+					<div class="solution-card"><div class="solution-header"><div class="solution-icon">🏦</div><h3>FinTech Solutions</h3></div><p>Bezpieczne i inteligentne rozwiązania finansowe</p><ul><li>Fraud detection</li><li>Algorithmic trading</li><li>Risk assessment</li></ul></div>
+				</div>
+			</div>
+		</section>
+		<section id="trusted" class="section trusted" aria-labelledby="trusted-title">
+			<div class="container">
+				<h2 id="trusted-title" class="section-title">Firmy, które nam zaufały</h2>
+				<div class="trusted-logos">
+					  <!-- 25 slotów na logotypy i linki firm -->
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo1.png" alt="Firma 1"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo2.png" alt="Firma 2"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo3.png" alt="Firma 3"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo4.png" alt="Firma 4"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo5.png" alt="Firma 5"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo6.png" alt="Firma 6"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo7.png" alt="Firma 7"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo8.png" alt="Firma 8"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo9.png" alt="Firma 9"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo10.png" alt="Firma 10"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo11.png" alt="Firma 11"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo12.png" alt="Firma 12"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo13.png" alt="Firma 13"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo14.png" alt="Firma 14"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo15.png" alt="Firma 15"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo16.png" alt="Firma 16"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo17.png" alt="Firma 17"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo18.png" alt="Firma 18"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo19.png" alt="Firma 19"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo20.png" alt="Firma 20"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo21.png" alt="Firma 21"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo22.png" alt="Firma 22"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo23.png" alt="Firma 23"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo24.png" alt="Firma 24"></a>
+					  <a href="#" class="trusted-logo"><img src="assets/img/logo25.png" alt="Firma 25"></a>
+				</div>
+			</div>
+		</section>
+		<section id="brands" class="section brands" aria-labelledby="brands-title">
+			<div class="container">
+				<h2 id="brands-title" class="section-title">Nasze marki</h2>
+				<div class="brands-grid">
+					  <div class="brand-card"><h3>BrandOne</h3><p>Nowoczesne rozwiązania IoT dla przemysłu.</p><a href="#" class="brand-link">Zobacz stronę</a></div>
+					  <div class="brand-card"><h3>AIPro</h3><p>Zaawansowane algorytmy AI dla biznesu.</p><a href="#" class="brand-link">Zobacz stronę</a></div>
+					  <div class="brand-card"><h3>SecureNet</h3><p>Bezpieczne systemy blockchain i cyberbezpieczeństwo.</p><a href="#" class="brand-link">Zobacz stronę</a></div>
+					  <div class="brand-card"><h3>QuantumLeap</h3><p>Obliczenia kwantowe dla nauki i przemysłu.</p><a href="#" class="brand-link">Zobacz stronę</a></div>
+					  <div class="brand-card"><h3>DataVision</h3><p>Big Data i analityka w czasie rzeczywistym.</p><a href="#" class="brand-link">Zobacz stronę</a></div>
+				</div>
+			</div>
+		</section>
+		<section id="contact" class="section contact" aria-labelledby="contact-title">
+			<div class="container">
+				<h2 id="contact-title" class="section-title">KONTAKT</h2>
+				<div class="contact-content">
+					<div class="contact-info">
+						<div class="contact-item"><div class="contact-icon">✉️</div><div><h4>Email</h4><p>contact@insignis.tech</p></div></div>
+						<div class="contact-item"><div class="contact-icon">☎️</div><div><h4>Telefon</h4><p>+48 123 456 789</p></div></div>
+						<div class="contact-item"><div class="contact-icon">📌</div><div><h4>Lokalizacja</h4><p>Warszawa, Polska</p></div></div>
+					</div>
+					<form class="contact-form" id="contactForm" role="form" aria-label="Formularz kontaktowy">
+						<div class="form-row"><input type="text" placeholder="Imię" required aria-label="Imię"><input type="email" placeholder="Email" required aria-label="Email"></div>
+						<input type="text" placeholder="Temat" required aria-label="Temat">
+						<textarea placeholder="Wiadomość" rows="5" required aria-label="Wiadomość"></textarea>
+						<div class="rodo-checkbox"><input type="checkbox" id="rodo" required><label for="rodo">Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z RODO w celu realizacji zapytania.</label></div>
+						<button type="submit" class="btn btn-primary" aria-label="Wyślij wiadomość">WYŚLIJ WIADOMOŚĆ</button>
+						<div id="formMsg"></div>
+					</form>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-content">
+				<div class="footer-logo"><span class="neon-text">INSIGNIS TECH</span></div>
+				<div class="footer-links">
+					<a href="#hero">Home</a>
+					<a href="#about">O nas</a>
+					<a href="#technologies">Technologie</a>
+					<a href="#solutions">Rozwiązania</a>
+					<a href="#trusted">Firmy</a>
+					<a href="#brands">Marki</a>
+					<a href="#contact">Kontakt</a>
+				</div>
+				<div class="footer-social">
+					<a href="#" class="social-icon">🔗</a>
+					<a href="#" class="social-icon">🐦</a>
+					<a href="#" class="social-icon">💼</a>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<p>&copy; 2026 INSIGNIS TECH. Wszystkie prawa zastrzeżone.</p>
+			</div>
+		</div>
+	</footer>
+	<script src="assets/js/app.js"></script>
 </body>
 </html>
